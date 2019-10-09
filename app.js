@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 var express = require("express"),
 	app     = express(),
 	mongoose = require("mongoose"),
@@ -24,7 +26,6 @@ var Data = mongoose.model("Data", dataSchema);
 app.get("/", function(req, res){
 	res.render("home");
 });
-
 
 //starts server on port 3000
 app.listen(3000, function(){
