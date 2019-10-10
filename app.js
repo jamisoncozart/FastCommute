@@ -1,9 +1,10 @@
 require("dotenv").config();
 
-var express = require("express"),
-	app     = express(),
-	mongoose = require("mongoose"),
-	bodyParser = require("body-parser");
+var express    = require("express"),
+	app        = express(),
+	mongoose   = require("mongoose"),
+	bodyParser = require("body-parser"),
+	htmlTable  = require("./scripts/data.js");
 
 mongoose.connect("mongodb://localhost/traffic_app", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
@@ -24,7 +25,7 @@ var Data = mongoose.model("Data", dataSchema);
 
 //renders a 'homepage' under the default '/' route
 app.get("/", function(req, res){
-	res.render("home");
+	res.render("home", {dataTable: htmlTable.table});
 });
 
 //starts server on port 3000
